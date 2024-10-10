@@ -14,7 +14,7 @@
             <input type="text" id="searchInput" placeholder="Name oder Email eingeben" class="form-control">
         </div>
         <div class="col-md-2">
-            <button class="btn btn-primary">Suchen</button>
+            <button class="btn btn-primary" >Suchen</button>
         </div>
         <div class="col-md-2">
             <button class="btn btn-secondary" onclick="leeren()">Leeren</button>
@@ -32,8 +32,10 @@
         require 'func.php';
         $dataextract=getAllData();
         for($i = 0; $i < count($dataextract); $i++){
-            $tutti=$dataextract[$i];
-            echo '<tr>'.'<td>'.$tutti['firstname'].'</td>'.'<td>'.$tutti['lastname'].'</td>'.'<td>'.$tutti['birthdate'].'</td>'.'</tr>';
+            $tableData=$dataextract[$i];
+            global $gloId;
+            $gloId=$tableData["id"];
+            echo '<tr>'.'<td>'.'<a href="http://localhost/PHP-13/detail.php">'.$tableData['firstname'].'</td>'.'<td>'.$tableData['lastname'].'</td>'.'<td>'.$tableData['birthdate'].'</td>'.'</tr>';
         }
 
 
