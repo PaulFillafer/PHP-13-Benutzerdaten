@@ -5,15 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Data Filter</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <style>
-        /* Add custom styles here, e.g., for alternating row colors */
-        table tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-        table tr:nth-child(odd) {
-            background-color: #ffffff;
-        }
-    </style>
 </head>
 <body>
 <div class="container mt-4">
@@ -23,7 +14,7 @@
             <input type="text" id="searchInput" placeholder="Name oder Email eingeben" class="form-control">
         </div>
         <div class="col-md-2">
-            <button class="btn btn-primary" onclick="datenFiltern()">Suchen</button>
+            <button class="btn btn-primary">Suchen</button>
         </div>
         <div class="col-md-2">
             <button class="btn btn-secondary" onclick="leeren()">Leeren</button>
@@ -37,6 +28,17 @@
             <th>Email</th>
             <th>Geburtsdatum</th>
         </tr>
+        <?php
+        require 'func.php';
+        $dataextract=getAllData();
+        for($i = 0; $i < count($dataextract); $i++){
+            $tutti=$dataextract[$i];
+            echo '<tr>'.'<td>'.$tutti['firstname'].'</td>'.'<td>'.$tutti['lastname'].'</td>'.'<td>'.$tutti['birthdate'].'</td>'.'</tr>';
+        }
+
+
+
+        ?>
         </thead>
         <tbody id="tableBody">
         </tbody>
@@ -46,7 +48,12 @@
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <?php
-    require userdata.php;
+    require 'userdata.php';
+    require 'func.php';
+    getAllData();
+
+
+
 
 ?>
 </body>
